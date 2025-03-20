@@ -122,7 +122,7 @@ VAR dialog_S_B_6_completed = false
 Вы находитесь в центре островка. 
 Отсюда можно отправиться в разные стороны:
 +[Отправиться на космодром] -> spaceport_location
-+[Пойти в гостевой домик] -> guest_house_location
++ {dialog_S_D_2_completed} [Пойти в гостевой домик] -> guest_house_location
 +[Направиться на научную станцию] -> research_station_location
 +[Прогуляться до пляжа] -> beach
 
@@ -152,7 +152,7 @@ VAR dialog_S_B_6_completed = false
 *{is_first_meeting}[Познакомиться с директором] -> dialog_S_D_1
 *{dialog_S_D_1}[Спросить что теперь делать] -> dialog_S_D_2
 *{dialog_S_K_8_completed}[Обвинить ученую] -> dialog_S_D_3
-*{climax}[Попросить собрать сотрудников] -> dialog_S_D_4
+*{is_climax}[Попросить собрать сотрудников] -> dialog_S_D_4
 *{dialog_S_D_4_completed}[Разоблачить ассистента] -> dialog_S_D_5
 *{dialog_S_D_4_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
 *{dialog_S_D_4_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
@@ -161,26 +161,29 @@ VAR dialog_S_B_6_completed = false
 + -> dialog_s_d_no_phrase
 
 === S_K_knot ===
-*{first_meeting}[Знакомство с конструктором] -> dialog_S_K_1
-*{dialog_S_D_1_completed}[Совет уговорить ученую] -> dialog_S_K_2
-*{dialog_S_II_7_completed}[dialog_S_K_3] -> dialog_S_K_3
-*{dialog_S_II_7_completed}[Просьба о прямой помощи] -> dialog_S_K_4
-*{dialog_S_A_4_completed}[Прямая подсказка] -> dialog_S_K_5
-*{dialog_D_II_21_completed}[Отрицание конструтора] -> dialog_S_K_6
-*{dialog_S_A_5_completed}[Воспоминания конструктора] -> dialog_S_K_7
-*{is_dead_end}[Заговор] -> dialog_S_K_8
+#Location: Дворик
+*{is_first_meeting}[Познакомиться] -> dialog_S_K_1
+*{dialog_S_D_1_completed}[Спросить совета] -> dialog_S_K_2
+*{dialog_S_II_7_completed}[Попросить совета] -> dialog_S_K_3
+*{dialog_S_II_7_completed}[Попросить сказать нужный номер] -> dialog_S_K_4
+*{dialog_S_A_4_completed}[Сказать, что все узнал] -> dialog_S_K_5
+*{dialog_D_II_21_completed}[Расспросить о событиях] -> dialog_S_K_6
+*{dialog_S_A_5_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
+*{is_dead_end}[Спросить о директоре] -> dialog_S_K_8
 + -> dialog_s_k_no_phrase
 
 === D_II_knot ===
-*{dialog_S_D_1_completed}[Старт расследования] -> dialog_D_II_5
-*{is_setting_in}[Первый отдых] -> dialog_D_II_18
-*{is_setting_in}[Второй отдых] -> dialog_D_II_19
-*{is_setting_in}[Третий отдых] -> dialog_D_II_20
-*{is_ancient_artifact}[Технологии древних] -> dialog_D_II_21
-*{is_ancient_artifact}[Тайна киберфизической биологии] -> dialog_D_II_22
+#Location: Домик
+*{dialog_S_D_1_completed}[Спросить о приглашении] -> dialog_D_II_5
+*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_18
+*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_19
+*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_20
+*{is_ancient_artifact}[Попросить помочь с компьютером] -> dialog_D_II_21
+*{is_ancient_artifact}[Расспросить таинственном отделе] -> dialog_D_II_22
 + -> dialog_ii_no_phrase
 
 === P_R_knot ===
+#Location: Пляж
 *{is_first_meeting}[Наблюдение ихтиозавра] -> dialog_P_R_1
 *{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
 *{is_ancient_artifact}[Наблюдение мезизавра] -> dialog_P_R_3
@@ -188,6 +191,7 @@ VAR dialog_S_B_6_completed = false
 + -> dialog_p_r_no_phrase
 
 === S_II_knot ===
+#Location: Склад
 *{dialog_S_A_3_completed}[Просьба о выдаче компьютера] -> dialog_S_II_6
 *{dialog_S_II_6_completed}[Просьба о выдаче списанной техники] -> dialog_S_II_7
 *{dialog_S_II_7_completed}[MT-BZ-12] -> dialog_S_II_8
@@ -203,24 +207,28 @@ VAR dialog_S_B_6_completed = false
 + -> dialog_s_ii_no_phrase
 
 === B_B_knot ===
-*{is_dead_end}[Разговор с биологом] -> dialog_B_B_5
+#Location: Пляж
+*{is_dead_end}[Подойти к бегающей Клавдии Ивановне] -> dialog_B_B_5
 + -> dialog_b_b_no_phrase
 
 === S_B_knot ===
-*{is_first_meeting}[Знакомство с главной ученой] -> dialog_S_B_0
-*{dialog_S_K_2_completed}[Аргумент к судьбе] -> dialog_S_B_1
-*{dialog_S_B_1_completed}[Аргумент с его навыкам] -> dialog_S_B_2
-*{dialog_S_B_2_completed}[Аргумент к экономии] -> dialog_S_B_3
-*{dialog_S_B_3_completed}[Аргумент к жалости] -> dialog_S_B_4
-*{dialog_S_D_5_completed}[Предложение] -> dialog_S_B_6
+#Location: Кабинет ученой
+*{is_first_meeting}[Познакомиться] -> dialog_S_B_0
+*{dialog_S_K_2_completed}[Использовать аргумент судьбы] -> dialog_S_B_1
+*{dialog_S_B_1_completed}[Использовать аргумент навыков] -> dialog_S_B_2
+*{dialog_S_B_2_completed}[Использовать аргумент экономии] -> dialog_S_B_3
+*{dialog_S_B_3_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
+*{dialog_S_D_5_completed}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
 + -> dialog_s_b_no_phrase
 
 === spaceport_location ===
+#Location: Космодром
 Вы стоите на большой бетонной площадке, которая, впрочем, уже начала трескаться от вездесущих лиан и влажности. Ваш корабль прибыл сегодня утром, но роботы уже успели его разгрузить и загрузить обратно бесценными научными образцами и музейными экспонатами. Вам осталось только занять своё место в каюте.
 +{is_first_meeting}[Обратиться к бортовому ИИ] -> K_II_knot
 +[Вернуться в центр островка] -> navigation_hub
 
 === guest_house_location ===
+#Location: Домик
 Вы зашли в небольшой домик, где селятся гости станции. 
 Тут есть всё необходимое, чтобы провести несколько дней с прекрасным видом на океан из окна
 +[Обратиться к ИИ домика] -> D_II_knot
@@ -228,6 +236,7 @@ VAR dialog_S_B_6_completed = false
 
 
 === beach === 
+#Location: Пляж
 Перед вами шумит знаменитый океан Тетиса, только на горизонте виднеются ещё пару островков.
 *{is_first_meeting}[Наблюдение ихтиозавра] -> dialog_P_R_1
 *{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
@@ -237,6 +246,7 @@ VAR dialog_S_B_6_completed = false
 +[Вернуться в центр островка] -> navigation_hub
 
 === research_station_location === 
+#Location: Научная станция
 Вы прошли через ворота и попали на территорию научной станции. Тут есть внутренний дворик, используемый для ремонта техники, и несколько дверей в кабинеты сотрудников.
 +[Поболтать с медведем-конструктором во дворе] -> S_K_knot
 +[Обратиться к ассистенту директора] -> dialog_S_A_1
@@ -277,22 +287,22 @@ VAR dialog_S_B_6_completed = false
 
 === climax ===
 Дни до прихода обратного рейса на Берлогу прошли незаметно. Вы решили зайти в научный центр и попрощаться. Если вы хотите собрать всех и рассказать о своих догадках, кто же отправил приглашение, то это самый подходящий момент.
-~ climax = true
+~ is_climax = true
 -> research_station_location
 
 === kicked_out_in_shame ===
 Вы поссорились с работниками станции, и они заблокировали вам вход на территорию. Остаток времени пришлось провести в гостевом домике. Как бы то ни было, пришёл обратный рейс на Берлогу, и можно отправляться домой.
-~ kicked_out_in_shame = true
+~ is_kicked_out_in_shame = true
 -> spaceport_location
 
 === decided_to_leave ===
 Вы прекрасно провели время на Тетисе, но пришло время улетать. Пора отправляться на космодром. Вас, кажется, никто не пришёл провожать, но это не удивительно — все очень заняты работой.
-~ decided_to_leave = true
+~ is_decided_to_leave = true
 -> spaceport_location
 
 === stayed_on_planet ===
 Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на главную учёную и не решается.
-~ stayed_on_planet = true
+~ is_stayed_on_planet = true
 -> research_station_location
 
 === dialog_k_ii_no_phrase ===
