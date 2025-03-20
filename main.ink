@@ -128,26 +128,36 @@ VAR dialog_S_B_6_completed = false
 
 # Космодром диалоги с ИИ
 === K_II_knot ===
-*{is_arrival}[Приветствие] -> dialog_K_II_1
-*{is_arrival}[Рассказ о планете] -> dialog_K_II_2
-*{is_arrival}[Рассказ о работниках станции] -> dialog_K_II_3
-*{dialog_K_II_1_complete}[Готовность к посадке] -> dialog_K_II_4
+#Location: Подлёт
+*{is_arrival}[Поприветствовать] -> dialog_K_II_1
+*{is_arrival}[Спросить о планете] -> dialog_K_II_2
+*{is_arrival}[Спросить о работниках станции] -> dialog_K_II_3
+*{dialog_K_II_1_complete}[Объявить готовность к посадке] -> dialog_K_II_4
 + -> dialog_k_ii_no_phrase
 
 # Научная станция диалоги с ассистентом
 === S_A_knot === 
-*{is_first_meeting}[Знакомство с асситентом] -> dialog_S_A_1
-*{is_setting_in}[Сообщение об отъезде директора] -> dialog_S_A_2
-*{is_setting_in}[Вопрос про компьтер] -> dialog_S_A_3
-*{dialog_S_K_4_completed}[Вопрос про цветы] -> dialog_S_A_4
-*{dialog_D_II_21_completed}[Отрицание ассистента] -> dialog_S_A_5
-*{is_dead_end}[Продолжение отрицания] -> dialog_S_A_6
+#Location: Научная станция
+*{is_first_meeting}[Познакомиться] -> dialog_S_A_1
+*{is_setting_in}[Спросить о директоре] -> dialog_S_A_2
+*{is_setting_in}[Спросить о компьютере] -> dialog_S_A_3
+*{dialog_S_K_4_completed}[Спросить о цветах] -> dialog_S_A_4
+*{dialog_D_II_21_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
+*{is_dead_end}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
 + -> dialog_s_a_no_phrase
 
 # Научная станция диалоги с Директором
 === S_D_knot ===
-*{is_first_meeting}[Знакомство с директором] -> dialog_S_D_1
-*{dialog_S_D_1}[Что теперь делать] -> dialog_S_D_2
+#Location: Научная станция
+*{is_first_meeting}[Познакомиться с директором] -> dialog_S_D_1
+*{dialog_S_D_1}[Спросить что теперь делать] -> dialog_S_D_2
+*{dialog_S_K_8_completed}[Обвинить ученую] -> dialog_S_D_3
+*{climax}[Попросить собрать сотрудников] -> dialog_S_D_4
+*{dialog_S_D_4_completed}[Разоблачить ассистента] -> dialog_S_D_5
+*{dialog_S_D_4_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
+*{dialog_S_D_4_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
+*{dialog_S_D_4_completed}[Просто попрощаться] -> dialog_S_D_8
+
 + -> dialog_s_d_no_phrase
 
 === S_K_knot ===
@@ -267,18 +277,22 @@ VAR dialog_S_B_6_completed = false
 
 === climax ===
 Дни до прихода обратного рейса на Берлогу прошли незаметно. Вы решили зайти в научный центр и попрощаться. Если вы хотите собрать всех и рассказать о своих догадках, кто же отправил приглашение, то это самый подходящий момент.
+~ climax = true
 -> research_station_location
 
 === kicked_out_in_shame ===
 Вы поссорились с работниками станции, и они заблокировали вам вход на территорию. Остаток времени пришлось провести в гостевом домике. Как бы то ни было, пришёл обратный рейс на Берлогу, и можно отправляться домой.
+~ kicked_out_in_shame = true
 -> spaceport_location
 
 === decided_to_leave ===
 Вы прекрасно провели время на Тетисе, но пришло время улетать. Пора отправляться на космодром. Вас, кажется, никто не пришёл провожать, но это не удивительно — все очень заняты работой.
+~ decided_to_leave = true
 -> spaceport_location
 
 === stayed_on_planet ===
 Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на главную учёную и не решается.
+~ stayed_on_planet = true
 -> research_station_location
 
 === dialog_k_ii_no_phrase ===
