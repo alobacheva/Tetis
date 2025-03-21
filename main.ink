@@ -126,7 +126,6 @@ VAR dialog_S_B_6_completed = false
 === navigation_hub === 
 Вы находитесь в центре островка. 
 Отсюда можно отправиться в разные стороны:
-+[Отправиться на космодром] -> spaceport_location
 + {dialog_S_D_2_completed} [Пойти в гостевой домик] -> guest_house_location
 +[Направиться на научную станцию] -> research_station_location
 +[Прогуляться до пляжа] -> beach
@@ -149,6 +148,8 @@ VAR dialog_S_B_6_completed = false
 *{dialog_S_K_4_completed}[Спросить о цветах] -> dialog_S_A_4
 *{dialog_D_II_21_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
 *{is_dead_end}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
++ [Поговорить с сотрудниками на станции]-> research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_s_a_no_phrase
 
 # Научная станция диалоги с Директором
@@ -162,7 +163,8 @@ VAR dialog_S_B_6_completed = false
 *{dialog_S_D_4_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
 *{dialog_S_D_4_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
 *{dialog_S_D_4_completed}[Просто попрощаться] -> dialog_S_D_8
-
++ [Поговорить с сотрудниками на станции]-> research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_s_d_no_phrase
 
 === S_K_knot ===
@@ -172,9 +174,11 @@ VAR dialog_S_B_6_completed = false
 *{dialog_S_II_7_completed}[Попросить совета] -> dialog_S_K_3
 *{dialog_S_II_7_completed}[Попросить сказать нужный номер] -> dialog_S_K_4
 *{dialog_S_A_4_completed}[Сказать, что все узнал] -> dialog_S_K_5
-*{dialog_D_II_21_completed}[Расспросить о событиях] -> dialog_S_K_6
+*{dialog_D_II_21_completed && !dialog_S_A_5}[Расспросить о событиях] -> dialog_S_K_6
 *{dialog_S_A_5_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
 *{is_dead_end}[Спросить о директоре] -> dialog_S_K_8
++ [Поговорить с сотрудниками на станции]-> research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_s_k_no_phrase
 
 === D_II_knot ===
@@ -185,6 +189,7 @@ VAR dialog_S_B_6_completed = false
 *{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_20
 *{is_ancient_artifact}[Попросить помочь с компьютером] -> dialog_D_II_21
 *{is_ancient_artifact}[Расспросить таинственном отделе] -> dialog_D_II_22
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_ii_no_phrase
 
 === P_R_knot ===
@@ -193,6 +198,7 @@ VAR dialog_S_B_6_completed = false
 *{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
 *{is_ancient_artifact}[Наблюдение мезизавра] -> dialog_P_R_3
 *{is_dead_end}[Наблюдение трелобита] -> dialog_P_R_4
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_p_r_no_phrase
 
 === S_II_knot ===
@@ -209,11 +215,15 @@ VAR dialog_S_B_6_completed = false
 *{dialog_S_II_7_completed}[PC-HN-10] -> dialog_S_II_15
 *{dialog_S_II_7_completed}[PC-HN-15] -> dialog_S_II_16
 *{dialog_S_II_7_completed}[LT-BZ-09] -> dialog_S_II_17
++ [Поговорить с сотрудниками на станции]-> research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_s_ii_no_phrase
 
 === B_B_knot ===
 #Location: Пляж
 *{is_dead_end}[Подойти к бегающей Клавдии Ивановне] -> dialog_B_B_5
+research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_b_b_no_phrase
 
 === S_B_knot ===
@@ -224,13 +234,14 @@ VAR dialog_S_B_6_completed = false
 *{dialog_S_B_2_completed}[Использовать аргумент экономии] -> dialog_S_B_3
 *{dialog_S_B_3_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
 *{dialog_S_D_5_completed}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
++ [Поговорить с сотрудниками на станции]-> research_station_location
++ [Решить куда пойти]-> navigation_hub
 + -> dialog_s_b_no_phrase
 
 === spaceport_location ===
 #Location: Космодром
 Вы стоите на большой бетонной площадке, которая, впрочем, уже начала трескаться от вездесущих лиан и влажности. Ваш корабль прибыл сегодня утром, но роботы уже успели его разгрузить и загрузить обратно бесценными научными образцами и музейными экспонатами. Вам осталось только занять своё место в каюте.
 +{is_first_meeting}[Обратиться к бортовому ИИ] -> K_II_knot
-+[Вернуться в центр островка] -> navigation_hub
 
 === guest_house_location ===
 #Location: Домик
@@ -273,7 +284,7 @@ VAR dialog_S_B_6_completed = false
 === first_meeting ===
 На космодроме вас никто не ждал, но Искусственный интеллект корабля подсказал вам, в какую сторону идти до станции. Со всех сторон на горизонте виден берег моря. Станция оказалась меньше, чем вы представляли, — всего несколько белых куполов, закрытых защитным ограждением. Во дворе, около самого большого из куполов, вы видите молодого медведя, который ковыряется в генераторе.
 ~ is_first_meeting = true
--> spaceport_location
+-> research_station_location
 
 === settling_in ===
 Вы разместились в гостевом домике. Обратный рейс на Берлогу будет через несколько дней. Вам предстоит решить, использовать ли это время для отдыха, наблюдений за динозаврами или попытаться разобраться, откуда всё же взялось ваше приглашение.
