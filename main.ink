@@ -61,6 +61,11 @@ VAR is_first_meeting = false
 VAR is_setting_in = false
 VAR is_dead_end = false
 VAR is_ancient_artifact = false
+VAR is_climax = false
+VAR is_kicked_out_in_shame = false
+VAR is_decided_to_leave = false
+VAR is_stayed_on_planet = false
+
 
 VAR dialog_K_II_1_complete = false
 VAR dialog_K_II_2_completed = false
