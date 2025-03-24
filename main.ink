@@ -108,7 +108,7 @@ VAR dialog_D_II_22_completed = false
 VAR dialog_S_A_5_completed = false
 VAR dialog_S_K_6_completed = false
 VAR dialog_S_K_7_completed = false
-VAR dialog_P_R_3_mesosaurus_completed = false
+VAR dialog_P_R_3_completed = false
 VAR dialog_S_D_3_completed = false
 VAR dialog_S_A_6_completed = false
 VAR dialog_S_K_8_completed = false
@@ -121,6 +121,8 @@ VAR dialog_S_D_7_completed = false
 VAR dialog_S_D_8_completed = false
 VAR dialog_K_II_24_completed = false
 VAR dialog_S_B_6_completed = false
+VAR dialog_D_II_5_completed = false
+VAR dialog_P_R_1_completed=false
 
 -> arrival_to_tetis
 === navigation_hub === 
@@ -137,17 +139,18 @@ VAR dialog_S_B_6_completed = false
 *{is_arrival}[Спросить о планете] -> dialog_K_II_2
 *{is_arrival}[Спросить о работниках станции] -> dialog_K_II_3
 *{dialog_K_II_1_complete}[Объявить готовность к посадке] -> dialog_K_II_4
-+ -> dialog_k_ii_no_phrase
+*{kicked_out_in_shame}[Спросить об отлете] -> dialog_K_II_23
+*{decided_to_leave} [Спросить об отлете] -> dialog_K_II_23
 
 # Научная станция диалоги с ассистентом
 === S_A_knot === 
 #Location: Научная станция
-*{is_first_meeting}[Познакомиться] -> dialog_S_A_1
-*{is_setting_in}[Спросить о директоре] -> dialog_S_A_2
-*{is_setting_in}[Спросить о компьютере] -> dialog_S_A_3
-*{dialog_S_K_4_completed}[Спросить о цветах] -> dialog_S_A_4
-*{dialog_D_II_21_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
-*{is_dead_end}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
+*{is_first_meeting && !dialog_S_A_1_completed}[Познакомиться] -> dialog_S_A_1
+*{is_setting_in && !dialog_S_A_2_completed}[Спросить о директоре] -> dialog_S_A_2
+*{is_setting_in && !dialog_S_A_3_completed}[Спросить о компьютере] -> dialog_S_A_3
+*{dialog_S_K_4_completed && !dialog_S_A_4_completed}[Спросить о цветах] -> dialog_S_A_4
+*{dialog_D_II_21_completed && !dialog_S_A_5_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
+*{is_dead_end && !dialog_S_A_6_completed}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_a_no_phrase
@@ -155,85 +158,85 @@ VAR dialog_S_B_6_completed = false
 # Научная станция диалоги с Директором
 === S_D_knot ===
 #Location: Научная станция
-*{is_first_meeting}[Познакомиться с директором] -> dialog_S_D_1
-*{dialog_S_D_1}[Спросить что теперь делать] -> dialog_S_D_2
-*{dialog_S_K_8_completed}[Обвинить ученую] -> dialog_S_D_3
-*{is_climax}[Попросить собрать сотрудников] -> dialog_S_D_4
-*{dialog_S_D_4_completed}[Разоблачить ассистента] -> dialog_S_D_5
-*{dialog_S_D_4_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
-*{dialog_S_D_4_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
-*{dialog_S_D_4_completed}[Просто попрощаться] -> dialog_S_D_8
+*{is_first_meeting && !dialog_S_D_1_completed}[Познакомиться с директором] -> dialog_S_D_1
+*{dialog_S_D_1 && !dialog_S_D_2_completed}[Спросить что теперь делать] -> dialog_S_D_2
+*{dialog_S_K_8_completed && !dialog_S_D_3_completed}[Обвинить ученую] -> dialog_S_D_3
+*{is_climax && !dialog_S_D_4_completed}[Попросить собрать сотрудников] -> dialog_S_D_4
+*{dialog_S_D_4_completed && !dialog_S_D_5_completed}[Разоблачить ассистента] -> dialog_S_D_5
+*{dialog_S_D_4_completed && !dialog_S_D_6_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
+*{dialog_S_D_4_completed && !dialog_S_D_7_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
+*{dialog_S_D_4_completed && !dialog_S_D_8_completed}[Просто попрощаться] -> dialog_S_D_8
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_d_no_phrase
 
 === S_K_knot ===
 #Location: Дворик
-*{is_first_meeting}[Познакомиться] -> dialog_S_K_1
-*{dialog_S_D_1_completed}[Спросить совета] -> dialog_S_K_2
-*{dialog_S_II_7_completed}[Попросить совета] -> dialog_S_K_3
-*{dialog_S_II_7_completed}[Попросить сказать нужный номер] -> dialog_S_K_4
-*{dialog_S_A_4_completed}[Сказать, что все узнал] -> dialog_S_K_5
-*{dialog_D_II_21_completed && !dialog_S_A_5}[Расспросить о событиях] -> dialog_S_K_6
-*{dialog_S_A_5_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
-*{is_dead_end}[Спросить о директоре] -> dialog_S_K_8
+*{is_first_meeting && !dialog_S_K_1_completed}[Познакомиться] -> dialog_S_K_1
+*{dialog_S_D_1_completed && !dialog_S_K_2_completed}[Спросить совета] -> dialog_S_K_2
+*{dialog_S_II_7_completed && !dialog_S_K_3_completed}[Попросить совета] -> dialog_S_K_3
+*{dialog_S_II_7_completed && !dialog_S_K_4_completed}[Попросить сказать нужный номер] -> dialog_S_K_4
+*{dialog_S_A_4_completed && !dialog_S_K_5_completed}[Сказать, что все узнал] -> dialog_S_K_5
+*{dialog_D_II_21_completed && !dialog_S_A_5 && !dialog_S_K_6_completed}[Расспросить о событиях] -> dialog_S_K_6
+*{dialog_S_A_5_completed && !dialog_S_K_7_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
+*{is_dead_end && !dialog_S_K_8_completed}[Спросить о директоре] -> dialog_S_K_8
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_k_no_phrase
 
 === D_II_knot ===
 #Location: Домик
-*{dialog_S_D_1_completed}[Спросить о приглашении] -> dialog_D_II_5
-*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_18
-*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_19
-*{is_setting_in}[Узнать о развлечениях тут] -> dialog_D_II_20
-*{is_ancient_artifact}[Попросить помочь с компьютером] -> dialog_D_II_21
-*{is_ancient_artifact}[Расспросить таинственном отделе] -> dialog_D_II_22
+*{dialog_S_D_1_completed && !dialog_D_II_5_completed}[Спросить о приглашении] -> dialog_D_II_5
+*{is_setting_in && !dialog_D_II_18_completed}[Узнать о развлечениях тут] -> dialog_D_II_18
+*{is_setting_in && !dialog_D_II_19_completed}[Узнать о развлечениях тут] -> dialog_D_II_19
+*{is_setting_in && !dialog_D_II_20_completed}[Узнать о развлечениях тут] -> dialog_D_II_20
+*{is_ancient_artifact && !dialog_D_II_21_completed}[Попросить помочь с компьютером] -> dialog_D_II_21
+*{is_ancient_artifact && !dialog_D_II_22_completed}[Расспросить таинственном отделе] -> dialog_D_II_22
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_ii_no_phrase
 
 === P_R_knot ===
 #Location: Пляж
-*{is_first_meeting}[Наблюдение ихтиозавра] -> dialog_P_R_1
-*{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
-*{is_ancient_artifact}[Наблюдение мезизавра] -> dialog_P_R_3
-*{is_dead_end}[Наблюдение трелобита] -> dialog_P_R_4
+*{is_first_meeting && !dialog_P_R_1_completed}[Наблюдение ихтиозавра] -> dialog_P_R_1
+*{is_setting_in && !dialog_P_R_2_completed}[Наблюдение плезиозавтра] -> dialog_P_R_2
+*{is_ancient_artifact && !dialog_P_R_3_completed}[Наблюдение мезизавра] -> dialog_P_R_3
+*{is_dead_end && !dialog_P_R_4_completed}[Наблюдение трелобита] -> dialog_P_R_4
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_p_r_no_phrase
 
 === S_II_knot ===
 #Location: Склад
-*{dialog_S_A_3_completed}[Просьба о выдаче компьютера] -> dialog_S_II_6
-*{dialog_S_II_6_completed}[Просьба о выдаче списанной техники] -> dialog_S_II_7
-*{dialog_S_II_7_completed}[MT-BZ-12] -> dialog_S_II_8
-*{dialog_S_II_7_completed}[PC-AP-10] -> dialog_S_II_9
-*{dialog_S_II_7_completed}[LT-HN-08] -> dialog_S_II_10
-*{dialog_S_II_7_completed}[PC-HN-13] -> dialog_S_II_11
-*{dialog_S_II_7_completed}[SR-FL-07] -> dialog_S_II_12
-*{dialog_S_II_7_completed}[PC-HN-14] -> dialog_S_II_13
-*{dialog_S_II_7_completed}[PC-HN-06] -> dialog_S_II_14
-*{dialog_S_II_7_completed}[PC-HN-10] -> dialog_S_II_15
-*{dialog_S_II_7_completed}[PC-HN-15] -> dialog_S_II_16
-*{dialog_S_II_7_completed}[LT-BZ-09] -> dialog_S_II_17
+*{dialog_S_A_3_completed && !dialog_S_II_6_completed}[Просьба о выдаче компьютера] -> dialog_S_II_6
+*{dialog_S_II_6_completed && !dialog_S_II_7_completed}[Просьба о выдаче списанной техники] -> dialog_S_II_7
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[MT-BZ-12] -> dialog_S_II_8
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-AP-10] -> dialog_S_II_9
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[LT-HN-08] -> dialog_S_II_10
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-13] -> dialog_S_II_11
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[SR-FL-07] -> dialog_S_II_12
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-14] -> dialog_S_II_13
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-06] -> dialog_S_II_14
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-10] -> dialog_S_II_15
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-15] -> dialog_S_II_16
+*{dialog_S_II_7_completed && !dialog_S_II_15_completed}[LT-BZ-09] -> dialog_S_II_17
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_ii_no_phrase
 
 === B_B_knot ===
 #Location: Пляж
-*{is_dead_end}[Подойти к бегающей Клавдии Ивановне] -> dialog_B_B_5
+*{is_dead_end && !dialog_B_B_5_completed}[Подойти к бегающей Клавдии Ивановне] -> dialog_B_B_5
 research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_b_b_no_phrase
 
 === S_B_knot ===
 #Location: Кабинет ученой
-*{is_first_meeting}[Познакомиться] -> dialog_S_B_0
-*{dialog_S_K_2_completed}[Использовать аргумент судьбы] -> dialog_S_B_1
-*{dialog_S_B_1_completed}[Использовать аргумент навыков] -> dialog_S_B_2
-*{dialog_S_B_2_completed}[Использовать аргумент экономии] -> dialog_S_B_3
-*{dialog_S_B_3_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
-*{dialog_S_D_5_completed}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
+*{is_first_meeting && !dialog_S_B_0_completed}[Познакомиться] -> dialog_S_B_0
+*{dialog_S_K_2_completed && !dialog_S_B_1_completed}[Использовать аргумент судьбы] -> dialog_S_B_1
+*{dialog_S_B_1_completed && !dialog_S_B_2_completed}[Использовать аргумент навыков] -> dialog_S_B_2
+*{dialog_S_B_2_completed && !dialog_S_B_3_completed}[Использовать аргумент экономии] -> dialog_S_B_3
+*{dialog_S_B_3_completed && !dialog_S_B_4_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
+*{dialog_S_D_5_completed && !dialog_S_B_6_completed}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_b_no_phrase
@@ -247,7 +250,7 @@ research_station_location
 #Location: Домик
 Вы зашли в небольшой домик, где селятся гости станции. 
 Тут есть всё необходимое, чтобы провести несколько дней с прекрасным видом на океан из окна
-+[Обратиться к ИИ домика] -> D_II_knot
++{dialog_S_D_2_completed} [Обратиться к ИИ домика] -> D_II_knot
 +[Вернуться в центр островка] -> navigation_hub
 
 
@@ -267,8 +270,8 @@ research_station_location
 +[Поболтать с медведем-конструктором во дворе] -> S_K_knot
 +[Обратиться к ассистенту директора] -> dialog_S_A_1
 +[Постучаться и зайти в кабинет директора] -> dialog_S_D_1
-+[Обратиться к складскому ИИ] -> S_II_knot
-+[Заглянуть к главной учёной-биологу] -> dialog_S_B_0 
++{is_setting_in && !dialog_S_II_15_completed}[Обратиться к складскому ИИ] -> S_II_knot
++{dialog_S_D_1_completed}[Заглянуть к главной учёной-биологу] -> dialog_S_B_0 
 +[Вернуться в центр островка] -> navigation_hub
 
 === arrival_to_tetis ===
@@ -321,48 +324,44 @@ research_station_location
 ~ is_stayed_on_planet = true
 -> research_station_location
 
-=== dialog_k_ii_no_phrase ===
-(K_II_KNOT: нет тематик)
-У ИИ на космодроме отсутсвует тематика. В таблице ее нет. по этому тут вольный текст.
--> navigation_hub
 
 === dialog_s_d_no_phrase ===
-(S_D_Knot: нет тематик)
+#(S_D_Knot: нет тематик)
 Прошу прощения, сейчас я занята, задайте свой вопрос ассистенту Мише.
--> navigation_hub
+-> research_station_location
 
 === dialog_s_a_no_phrase ===
-(S_A_Knot: нет тематик)
+#(S_A_Knot: нет тематик)
 Извини, я сейчас занят, попроси ИИ если тебе что-то надо, он мне всегда помогает.
--> navigation_hub
+-> research_station_location
 
 === dialog_s_k_no_phrase ===
-(S_K_Knot: нет тематик)
+#(S_K_Knot: нет тематик)
 Ты что-то сказал? Не слышу ничего, пока двигатель проверяю, ну потом поговорим, бывай.
--> navigation_hub
+-> research_station_location
 
 === dialog_ii_no_phrase ===
-(D_II_Knot: нет тематик)
+#(D_II_Knot: нет тематик)
 Добро пожаловать на станцию, надеюсь вы проведет время с интересом и пользой.
 -> navigation_hub
 
 === dialog_p_r_no_phrase ===
-(P_R_Knot: нет тематик)
+#(P_R_Knot: нет тематик)
 На пляже безмедвежье и даже трилобиты нашли сегодня другое место, чтобы погреться на мелководье.
 -> navigation_hub
 
 === dialog_s_ii_no_phrase ===
-(S_II_Knot: нет тематик)
+#(S_II_Knot: нет тематик)
 Не доступен для разговора
--> navigation_hub
+-> research_station_location
 
 === dialog_b_b_no_phrase ===
-(B_B_Knot: нет тематик)
+#(B_B_Knot: нет тематик)
 Прошу прощения, у меня полно работы, займитесь чем-нибудь полезным.
 -> navigation_hub
 
 === dialog_s_b_no_phrase ===
-(S_B_Knot: нет тематик)
+#(S_B_Knot: нет тематик)
 Прошу прощения, у меня полно работы, займитесь чем-нибудь полезным.
--> navigation_hub
+-> research_station_location
 
