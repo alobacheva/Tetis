@@ -261,7 +261,7 @@ research_station_location
 *{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
 *{is_ancient_artifact}[Наблюдение мезизавра] -> dialog_P_R_3
 *{is_dead_end}[Наблюдение трелобита] -> dialog_P_R_4
-*[Обратиться к главной учёной, которая как-то странно и резко двигается на берегу] -> dialog_B_B_5 
+*{is_dead_end}[Обратиться к главной учёной, которая как-то странно и резко двигается на берегу] -> dialog_B_B_5 
 +[Вернуться в центр островка] -> navigation_hub
 
 === research_station_location === 
