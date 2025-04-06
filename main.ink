@@ -55,6 +55,9 @@ INCLUDE k_ii_23.ink
 INCLUDE k_ii_24.ink
 INCLUDE s_b_6.ink
 INCLUDE p_r_2.ink
+INCLUDE s_a_7.ink
+INCLUDE s_k_9.ink
+INCLUDE s_d_9.ink
 
 VAR is_arrival = false
 VAR is_first_meeting = false
@@ -123,6 +126,9 @@ VAR dialog_K_II_24_completed = false
 VAR dialog_S_B_6_completed = false
 VAR dialog_D_II_5_completed = false
 VAR dialog_P_R_1_completed=false
+VAR polite=0
+VAR chill=0
+VAR cheeky=0
 
 -> arrival_to_tetis
 === navigation_hub === 
@@ -151,6 +157,7 @@ VAR dialog_P_R_1_completed=false
 *{dialog_S_K_4_completed && !dialog_S_A_4_completed}[Спросить о цветах] -> dialog_S_A_4
 *{dialog_D_II_21_completed && !dialog_S_A_5_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
 *{is_dead_end && !dialog_S_A_6_completed}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
+*{stayed_on_planet && chill > 11}[Попрощаться с Михаилом] -> dialog_S_A_7
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_a_no_phrase
@@ -165,7 +172,8 @@ VAR dialog_P_R_1_completed=false
 *{dialog_S_D_4_completed && !dialog_S_D_5_completed}[Разоблачить ассистента] -> dialog_S_D_5
 *{dialog_S_D_4_completed && !dialog_S_D_6_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
 *{dialog_S_D_4_completed && !dialog_S_D_7_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
-*{dialog_S_D_4_completed && !dialog_S_D_8_completed}[Просто попрощаться] -> dialog_S_D_8
+*{dialog_S_D_4_completed && !dialog_S_D_8_completed && !stayed_on_planet}[Просто попрощаться со всеми сразу] -> dialog_S_D_8
+*{stayed_on_planet && cheeky <=11 && polite<= 11 && chill<= 11}[Зайти к директору спросить нет ли возможности все же остаться] -> dialog_S_K_9
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_d_no_phrase
@@ -180,6 +188,7 @@ VAR dialog_P_R_1_completed=false
 *{dialog_D_II_21_completed && !dialog_S_A_5 && !dialog_S_K_6_completed}[Расспросить о событиях] -> dialog_S_K_6
 *{dialog_S_A_5_completed && !dialog_S_K_7_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
 *{is_dead_end && !dialog_S_K_8_completed}[Спросить о директоре] -> dialog_S_K_8
+*{stayed_on_planet && cheeky > 11}[Попрощаться с Ваней] -> dialog_S_K_9
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_k_no_phrase
@@ -236,7 +245,7 @@ research_station_location
 *{dialog_S_B_1_completed && !dialog_S_B_2_completed}[Использовать аргумент навыков] -> dialog_S_B_2
 *{dialog_S_B_2_completed && !dialog_S_B_3_completed}[Использовать аргумент экономии] -> dialog_S_B_3
 *{dialog_S_B_3_completed && !dialog_S_B_4_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
-*{dialog_S_D_5_completed && !dialog_S_B_6_completed}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
+*{stayed_on_planet && polite > 11}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_s_b_no_phrase
@@ -291,16 +300,28 @@ research_station_location
 
 === settling_in ===
 Вы разместились в гостевом домике. Обратный рейс на Берлогу будет через несколько дней. Вам предстоит решить, использовать ли это время для отдыха, наблюдений за динозаврами или попытаться разобраться, откуда всё же взялось ваше приглашение.
+Как вас воспринимают работники научной станции:
+Вежливый: {polite}
+Чиловый: {chill}
+Дерзкий: {cheeky}
 ~ is_setting_in = true
 -> guest_house_location
 
 === ancient_artifact ===
 Старый компьютер удалось включить, и конструктор Ваня помог вам перенести его в ваш домик. Осталось разобраться, как работать с такой старой техникой.
+Как вас воспринимают работники научной станции:
+Вежливый: {polite}
+Чиловый: {chill}
+Дерзкий: {cheeky}
 ~ is_ancient_artifact = true
 -> guest_house_location
 
 === dead_end ===
 Вы стояли и говорили с конструктором Ваней на улице, когда увидели, как директор подходит к пирсу на катере, высаживается на берег и идёт в научный центр. В руках у неё коробка с компьютером новой модели.
+Как вас воспринимают работники научной станции:
+Вежливый: {polite}
+Чиловый: {chill}
+Дерзкий: {cheeky}
 ~ is_dead_end = true
 -> research_station_location
 
@@ -320,7 +341,7 @@ research_station_location
 -> spaceport_location
 
 === stayed_on_planet ===
-Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на главную учёную и не решается.
+Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на коллег и не решается. Все простепенно все начинают расходиться по кабинетам, может быть кто-то захочет вам сказать еще пару слов.
 ~ is_stayed_on_planet = true
 -> research_station_location
 
