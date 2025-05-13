@@ -142,7 +142,7 @@ VAR cheeky=0
 # Космодром диалоги с ИИ
 === K_II_knot ===
 #Location: Подлет
-На мониторе корабля отображается интерфейс Искуственного интеллекта космодрома Тетиса.
+На мониторе загорелась иконка микрофона. Вы можете ответить ИИ космодрома.
 *{is_arrival}[Поприветствовать] -> dialog_K_II_1
 *{is_arrival && dialog_K_II_1}[Спросить о планете] -> dialog_K_II_2
 *{is_arrival && dialog_K_II_1}[Спросить о работниках станции] -> dialog_K_II_3
@@ -166,8 +166,8 @@ VAR cheeky=0
 # Научная станция диалоги с Директором
 === S_D_knot ===
 #Location: Научная станция
-*{is_first_meeting && !dialog_S_D_1_completed}[Познакомиться с директором] -> dialog_S_D_1
-*{dialog_S_D_1 && !dialog_S_D_2_completed}[Спросить что теперь делать] -> dialog_S_D_2
+*{is_first_meeting && !dialog_S_D_1_completed && !settling_in}[Познакомиться с директором] -> dialog_S_D_1
+*{dialog_S_D_1 && !dialog_S_D_2_completed&& !settling_in}[Спросить что теперь делать] -> dialog_S_D_2
 *{dialog_S_K_8_completed && !dialog_S_D_3_completed}[Обвинить ученую] -> dialog_S_D_3
 *{is_climax && !dialog_S_D_4_completed}[Попросить собрать сотрудников] -> dialog_S_D_4
 *{dialog_S_D_4_completed && !dialog_S_D_5_completed}[Разоблачить ассистента] -> dialog_S_D_5
@@ -277,10 +277,10 @@ research_station_location
 #Location: Научная станция
 Вы на территории научной станции.
 +[Поболтать с медведем-конструктором во дворе] -> S_K_knot
-+[Обратиться к ассистенту директора] -> dialog_S_A_1
-+[Постучаться и зайти в кабинет директора] -> dialog_S_D_1
++[Обратиться к ассистенту директора] -> S_A_knot
++[Постучаться и зайти в кабинет директора] -> S_D_knot
 +{is_setting_in && !dialog_S_II_15_completed}[Обратиться к складскому ИИ] -> S_II_knot
-+{dialog_S_D_1_completed}[Заглянуть к главной учёной-биологу] -> dialog_S_B_0 
++{dialog_S_D_1_completed}[Заглянуть к главной учёной-биологу] -> S_B_knot
 +[Вернуться в центр островка] -> navigation_hub
 
 === arrival_to_tetis ===
