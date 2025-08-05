@@ -147,8 +147,8 @@ VAR cheeky=0
 *{is_arrival && dialog_K_II_1}[Спросить о планете] -> dialog_K_II_2
 *{is_arrival && dialog_K_II_1}[Спросить о работниках станции] -> dialog_K_II_3
 *{dialog_K_II_1_complete && dialog_K_II_1}[Объявить готовность к посадке] -> dialog_K_II_4
-*{kicked_out_in_shame}[Спросить об отлете] -> dialog_K_II_23
-*{decided_to_leave} [Спросить об отлете] -> dialog_K_II_23
+*{kicked_out_in_shame}[Спросить об отлёте] -> dialog_K_II_23
+*{decided_to_leave} [Спросить об отлёте] -> dialog_K_II_23
 # Научная станция диалоги с ассистентом
 === S_A_knot === 
 #Location: Научная станция
@@ -156,8 +156,8 @@ VAR cheeky=0
 *{is_setting_in && !dialog_S_A_2_completed}[Спросить о директоре] -> dialog_S_A_2
 *{is_setting_in && !dialog_S_A_3_completed}[Спросить о компьютере] -> dialog_S_A_3
 *{dialog_S_K_4_completed && !dialog_S_A_4_completed}[Спросить о цветах] -> dialog_S_A_4
-*{dialog_D_II_21_completed && !dialog_S_A_5_completed}[Спросить о том что было три недели назад] -> dialog_S_A_5
-*{is_dead_end && !dialog_S_A_6_completed}[Еще раз спросить что случилось три недели назад] -> dialog_S_A_6
+*{dialog_D_II_21_completed && !dialog_S_A_5_completed}[Спросить о том, что было три недели назад] -> dialog_S_A_5
+*{is_dead_end && !dialog_S_A_6_completed}[Ещё раз спросить, что случилось три недели назад] -> dialog_S_A_6
 *{stayed_on_planet && chill > 11}[Попрощаться с Михаилом] -> dialog_S_A_7
 + [Поговорить с сотрудниками на станции]-> research_station_location
 + [Решить куда пойти]-> navigation_hub
@@ -167,16 +167,16 @@ VAR cheeky=0
 === S_D_knot ===
 #Location: Научная станция
 *{is_first_meeting && !dialog_S_D_1_completed && !settling_in}[Познакомиться с директором] -> dialog_S_D_1
-*{dialog_S_D_1 && !dialog_S_D_2_completed&& !settling_in}[Спросить что теперь делать] -> dialog_S_D_2
-*{dialog_S_K_8_completed && !dialog_S_D_3_completed}[Обвинить ученую] -> dialog_S_D_3
+*{dialog_S_D_1 && !dialog_S_D_2_completed&& !settling_in}[Спросить, что теперь делать] -> dialog_S_D_2
+*{dialog_S_K_8_completed && !dialog_S_D_3_completed}[Обвинить учёную] -> dialog_S_D_3
 *{is_climax && !dialog_S_D_4_completed}[Попросить собрать сотрудников] -> dialog_S_D_4
 *{dialog_S_D_4_completed && !dialog_S_D_5_completed}[Разоблачить ассистента] -> dialog_S_D_5
 *{dialog_S_D_4_completed && !dialog_S_D_6_completed}[Разоблачить саму Елизавету Владимировну] -> dialog_S_D_6
-*{dialog_S_D_4_completed && !dialog_S_D_7_completed}[Разобралчить главнуб ученую] -> dialog_S_D_7
+*{dialog_S_D_4_completed && !dialog_S_D_7_completed}[Разоблачить главную ученую] -> dialog_S_D_7
 *{dialog_S_D_4_completed && !dialog_S_D_8_completed && !stayed_on_planet}[Просто попрощаться со всеми сразу] -> dialog_S_D_8
-*{stayed_on_planet && cheeky <=11 && polite<= 11 && chill<= 11}[Зайти к директору спросить нет ли возможности все же остаться] -> dialog_S_K_9
+*{stayed_on_planet && cheeky <=11 && polite<= 11 && chill<= 11}[Зайти к директору и спросить, нет ли возможности всё же остаться] -> dialog_S_K_9
 + [Поговорить с сотрудниками на станции]-> research_station_location
-+ [Решить куда пойти]-> navigation_hub
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_s_d_no_phrase
 
 === S_K_knot ===
@@ -185,13 +185,13 @@ VAR cheeky=0
 *{dialog_S_D_1_completed && !dialog_S_K_2_completed}[Спросить совета] -> dialog_S_K_2
 *{dialog_S_II_7_completed && !dialog_S_K_3_completed}[Попросить совета] -> dialog_S_K_3
 *{dialog_S_II_7_completed && !dialog_S_K_4_completed}[Попросить сказать нужный номер] -> dialog_S_K_4
-*{dialog_S_A_4_completed && !dialog_S_K_5_completed}[Сказать, что все узнал] -> dialog_S_K_5
+*{dialog_S_A_4_completed && !dialog_S_K_5_completed}[Сказать, что всё узнал] -> dialog_S_K_5
 *{dialog_D_II_21_completed && !dialog_S_A_5 && !dialog_S_K_6_completed}[Расспросить о событиях] -> dialog_S_K_6
-*{dialog_S_A_5_completed && !dialog_S_K_7_completed}[Еще раз расспросить о событиях] -> dialog_S_K_7
+*{dialog_S_A_5_completed && !dialog_S_K_7_completed}[Ещё раз расспросить о событиях] -> dialog_S_K_7
 *{is_dead_end && !dialog_S_K_8_completed}[Спросить о директоре] -> dialog_S_K_8
 *{stayed_on_planet && cheeky > 11}[Попрощаться с Ваней] -> dialog_S_K_9
 + [Поговорить с сотрудниками на станции]-> research_station_location
-+ [Решить куда пойти]-> navigation_hub
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_s_k_no_phrase
 
 === D_II_knot ===
@@ -201,16 +201,16 @@ VAR cheeky=0
 *{is_setting_in && !dialog_D_II_19_completed && dialog_D_II_18_completed}[Узнать о развлечениях тут] -> dialog_D_II_19
 *{is_setting_in && !dialog_D_II_20_completed && dialog_D_II_19_completed}[Узнать о развлечениях тут] -> dialog_D_II_20
 *{is_ancient_artifact && !dialog_D_II_21_completed}[Попросить помочь с компьютером] -> dialog_D_II_21
-*{is_ancient_artifact && !dialog_D_II_22_completed}[Расспросить таинственном отделе] -> dialog_D_II_22
-+ [Решить куда пойти]-> navigation_hub
+*{is_ancient_artifact && !dialog_D_II_22_completed}[Расспросить о таинственном отделе] -> dialog_D_II_22
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_ii_no_phrase
 
 === P_R_knot ===
 #Location: Пляж
 *{is_first_meeting && !dialog_P_R_1_completed}[Наблюдение ихтиозавра] -> dialog_P_R_1
-*{is_setting_in && !dialog_P_R_2_completed}[Наблюдение плезиозавтра] -> dialog_P_R_2
-*{is_ancient_artifact && !dialog_P_R_3_completed}[Наблюдение мезизавра] -> dialog_P_R_3
-*{is_dead_end && !dialog_P_R_4_completed}[Наблюдение трелобита] -> dialog_P_R_4
+*{is_setting_in && !dialog_P_R_2_completed}[Наблюдение плезиозавра] -> dialog_P_R_2
+*{is_ancient_artifact && !dialog_P_R_3_completed}[Наблюдение мезозавра] -> dialog_P_R_3
+*{is_dead_end && !dialog_P_R_4_completed}[Наблюдение трилобита] -> dialog_P_R_4
 + [Решить куда пойти]-> navigation_hub
 + -> dialog_p_r_no_phrase
 
@@ -229,14 +229,14 @@ VAR cheeky=0
 *{dialog_S_II_7_completed && !dialog_S_II_15_completed}[PC-HN-15] -> dialog_S_II_16
 *{dialog_S_II_7_completed && !dialog_S_II_15_completed}[LT-BZ-09] -> dialog_S_II_17
 + [Поговорить с сотрудниками на станции]-> research_station_location
-+ [Решить куда пойти]-> navigation_hub
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_s_ii_no_phrase
 
 === B_B_knot ===
 #Location: Пляж
 *{is_dead_end && !dialog_B_B_5_completed}[Подойти к бегающей Клавдии Ивановне] -> dialog_B_B_5
 research_station_location
-+ [Решить куда пойти]-> navigation_hub
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_b_b_no_phrase
 
 === S_B_knot ===
@@ -245,10 +245,10 @@ research_station_location
 *{dialog_S_K_2_completed && !dialog_S_B_1_completed}[Использовать аргумент судьбы] -> dialog_S_B_1
 *{dialog_S_B_1_completed && !dialog_S_B_2_completed}[Использовать аргумент навыков] -> dialog_S_B_2
 *{dialog_S_B_2_completed && !dialog_S_B_3_completed}[Использовать аргумент экономии] -> dialog_S_B_3
-*{dialog_S_B_3_completed && !dialog_S_B_4_completed}[Использовать аргумент  жалости] -> dialog_S_B_4
+*{dialog_S_B_3_completed && !dialog_S_B_4_completed}[Использовать аргумент жалости] -> dialog_S_B_4
 *{stayed_on_planet && polite > 11}[Попрощаться с Клавдией Ивановной] -> dialog_S_B_6
 + [Поговорить с сотрудниками на станции]-> research_station_location
-+ [Решить куда пойти]-> navigation_hub
++ [Решить, куда пойти]-> navigation_hub
 + -> dialog_s_b_no_phrase
 
 === spaceport_location ===
@@ -268,8 +268,8 @@ research_station_location
 Перед вами шумит знаменитый океан Тетиса, только на горизонте виднеются ещё пару островков.
 *{is_first_meeting}[Наблюдение ихтиозавра] -> dialog_P_R_1
 *{is_setting_in}[Наблюдение плезиозавтра] -> dialog_P_R_2
-*{is_ancient_artifact}[Наблюдение мезизавра] -> dialog_P_R_3
-*{is_dead_end}[Наблюдение трелобита] -> dialog_P_R_4
+*{is_ancient_artifact}[Наблюдение мезозавра] -> dialog_P_R_3
+*{is_dead_end}[Наблюдение трилобита] -> dialog_P_R_4
 *{is_dead_end}[Обратиться к главной учёной, которая как-то странно и резко двигается на берегу] -> dialog_B_B_5 
 +[Вернуться в центр островка] -> navigation_hub
 
@@ -285,10 +285,10 @@ research_station_location
 
 === arrival_to_tetis ===
 #Location: Подлет
-Вы недавно закончили Академию и, как все медведи, планировали отправиться на стажировку. 
+Вы недавно закончили Академию и, как и все медведи, планировали отправиться на стажировку. 
 Ваши родители из традиции Конструкторов и держат свою ремонтную мастерскую на планете Берлога, но вы решили встать на путь Биоинженера. 
-Время между окончанием Академии и стажировкой вы решили посвятить помощи своим родителям с работой в мастерской и из-за этого пропустили срок подачи документов на стажировки, поэтому не получили место вовремя. 
-Вы почти отчаялись куда-то уехать в этом году, но тут получили приглашение на место стажёра Киберфизическо-биологического отдела научной станции на Тетисе.
+После окончания Академии вы решили помочь своим родителям с работой в мастерской и из-за этого пропустили срок подачи документов на стажировку, поэтому не получили место вовремя. 
+Вы почти отчаялись куда-то уехать в этом году, но тут получили приглашение на место стажёра Киберфизически-биологического отдела научной станции на Тетисе.
 И вот вы сели на попутный корабль и приближаетесь к планете.
 ИИ: Добро пожаловать на Тетис! К сожалению, у меня не было информации о вашем прибытии. Я выдам вам временное разрешение на высадку на планете до выяснения обстоятельств.
 ~ is_arrival = true
@@ -301,8 +301,8 @@ research_station_location
 -> research_station_location
 
 === settling_in ===
-Вы разместились в гостевом домике. Обратный рейс на Берлогу будет через несколько дней. Вам предстоит решить, использовать ли это время для отдыха, наблюдений за динозаврами или попытаться разобраться, откуда всё же взялось ваше приглашение.
-Как вас воспринимают работники научной станции
+Вы разместились в гостевом домике. Обратный рейс на Берлогу будет через несколько дней. Вам предстоит решить, использовать ли это время для отдыха, наблюдений за динозаврами - или попытаться разобраться, откуда всё же взялось ваше приглашение.
+Как вас воспринимают работники научной станции:
 Вежливый - {polite}
 Чиловый - {chill}
 Дерзкий - {cheeky}
@@ -311,7 +311,7 @@ research_station_location
 
 === ancient_artifact ===
 Старый компьютер удалось включить, и конструктор Ваня помог вам перенести его в ваш домик. Осталось разобраться, как работать с такой старой техникой.
-Как вас воспринимают работники научной станции
+Как вас воспринимают работники научной станции:
 Вежливый - {polite}
 Чиловый - {chill}
 Дерзкий - {cheeky}
@@ -320,7 +320,7 @@ research_station_location
 
 === dead_end ===
 Вы стояли и говорили с конструктором Ваней на улице, когда увидели, как директор подходит к пирсу на катере, высаживается на берег и идёт в научный центр. В руках у неё коробка с компьютером новой модели.
-Как вас воспринимают работники научной станции
+Как вас воспринимают работники научной станции:
 Вежливый - {polite}
 Чиловый - {chill}
 Дерзкий - {cheeky}
@@ -338,12 +338,12 @@ research_station_location
 -> spaceport_location
 
 === decided_to_leave ===
-Вы прекрасно провели время на Тетисе, но пришло время улетать. Пора отправляться на космодром. Вас, кажется, никто не пришёл провожать, но это не удивительно — все очень заняты работой.
+Вы прекрасно провели время на Тетисе, но пришло время улетать. Пора отправляться на космодром. Вас, кажется, никто не пришёл провожать, но это неудивительно — все очень заняты работой.
 ~ is_decided_to_leave = true
 -> spaceport_location
 
 === stayed_on_planet ===
-Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на коллег и не решается. Все простепенно все начинают расходиться по кабинетам, может быть кто-то захочет вам сказать еще пару слов.
+Вы произвели впечатление на учёных своими аналитическими способностями. Директор, кажется, хочет вам что-то сказать, но смотрит на коллег и не решается. Все постепенно все начинают расходиться по кабинетам. Может быть, кто-то захочет вам сказать ещё пару слов.
 ~ is_stayed_on_planet = true
 -> research_station_location
 
@@ -355,22 +355,22 @@ research_station_location
 
 === dialog_s_a_no_phrase ===
 #(S_A_Knot: нет тематик)
-Извини, я сейчас занят, попроси ИИ если тебе что-то надо, он мне всегда помогает.
+Извини, я сейчас занят, попроси ИИ, если тебе что-то нужно, он мне всегда помогает.
 -> research_station_location
 
 === dialog_s_k_no_phrase ===
 #(S_K_Knot: нет тематик)
-Ты что-то сказал? Не слышу ничего, пока двигатель проверяю, ну потом поговорим, бывай.
+Ты что-то сказал? Не слышу ничего, пока двигатель проверяю! Ну потом поговорим, бывай.
 -> research_station_location
 
 === dialog_ii_no_phrase ===
 #(D_II_Knot: нет тематик)
-Добро пожаловать на станцию, надеюсь вы проведет время с интересом и пользой.
+Добро пожаловать на станцию. Надеюсь, вы проведёте время с интересом и пользой.
 -> navigation_hub
 
 === dialog_p_r_no_phrase ===
 #(P_R_Knot: нет тематик)
-На пляже безмедвежье и даже трилобиты нашли сегодня другое место, чтобы погреться на мелководье.
+На пляже безмедвежье, и даже трилобиты нашли сегодня другое место, чтобы погреться на мелководье.
 -> navigation_hub
 
 === dialog_s_ii_no_phrase ===
